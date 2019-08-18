@@ -1,31 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {//½á¹¹Ìå
-    int *arr;//Êı×é
-    int len;//Êı×é³¤¶È
+typedef struct {//ç»“æ„ä½“
+    int *arr;//æ•°ç»„
+    int len;//æ•°ç»„é•¿åº¦
 } Solution;
 
 Solution* solutionCreate(int* nums, int numsSize) {
-    Solution* obj = (Solution*)malloc(sizeof(Solution));//´´½¨Ò»¸ö½á¹¹ÌåÊı×é
+    Solution* obj = (Solution*)malloc(sizeof(Solution));
     obj->arr = nums;
     obj->len = numsSize;
     return obj;
 }
 
 int solutionPick(Solution* obj, int target) {
-    int i=0,ans,num=0;//numÓÃÀ´¼ÇÂ¼ÓëËù¸øÖµÏàµÈÊı×ÖµÄÊıÁ¿
+    int i=0,ans,num=0;//numç”¨æ¥è®°å½•ä¸æ‰€ç»™å€¼ç›¸ç­‰æ•°å­—çš„æ•°é‡
     for(i=0; i<obj->len; i++){
-        if(obj->arr[i] == target){//if¿ªÊ¼µÄÈıĞĞÊÇºËĞÄ´úÂë£¬Ò²ÊÇ×îÖØÒªµÄ
+        if(obj->arr[i] == target){//ifå¼€å§‹çš„ä¸‰è¡Œæ˜¯æ ¸å¿ƒä»£ç ï¼Œä¹Ÿæ˜¯æœ€é‡è¦çš„
             num++;
-            ans=(rand()%num==0)?i:ans;//Ëæ»úÈ¡Ñù
+            ans=(rand()%num==0)?i:ans;//éšæœºå–æ ·
         }
     }
     return ans;
 }
 
 void solutionFree(Solution* obj) {
-    free(obj);//ÊÍ·Å¿Õ¼ä
+    free(obj);//é‡Šæ”¾ç©ºé—´
 }
 
 /**
