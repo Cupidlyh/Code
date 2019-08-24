@@ -7,40 +7,40 @@
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
 
-int cmp(const void *a,const void *b)//±È½ÏÆ÷
+int cmp(const void *a,const void *b)//æ¯”è¾ƒå™¨
 {
-    return *(int *)a-*(int *)b; //´ÓĞ¡µ½´óÅÅĞò
+    return *(int *)a-*(int *)b; //ä»å°åˆ°å¤§æ’åº
 }
 
 int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
   int i,left,right,row=0,s;
   int *col=(int *)malloc(17000*sizeof(int));
-  qsort(nums,numsSize,sizeof(nums[0]),cmp);//ÅÅĞòº¯Êı
-  int **arr =(int **)malloc(sizeof(int*)*17000);//arrÎª¶şÎ¬Êı×é
+  qsort(nums,numsSize,sizeof(nums[0]),cmp);//æ’åºå‡½æ•°
+  int **arr =(int **)malloc(sizeof(int*)*17000);//arrä¸ºäºŒç»´æ•°ç»„
     for(i=0; i<17000; i++)
         arr[i]=(int *)malloc(sizeof(int)*3);
-    for(i=0;i<numsSize-2;i++) {//±éÀúÊı×é
-        if(i>0&&nums[i]==nums[i-1])//È¥ÖØ
+    for(i=0;i<numsSize-2;i++) {//éå†æ•°ç»„
+        if(i>0&&nums[i]==nums[i-1])//å»é‡
             continue;
-        left=i+1;//×óÖ¸Õë
-        right=numsSize-1;//ÓÒÖ¸Õë
-        while(left<right) {//Ñ­»·µÄÌõ¼ş
+        left=i+1;//å·¦æŒ‡é’ˆ
+        right=numsSize-1;//å³æŒ‡é’ˆ
+        while(left<right) {//å¾ªç¯çš„æ¡ä»¶
             s=nums[i]+nums[left]+nums[right];
             if(s<0)
                 left++;
             if(s>0)
                 right--;
-            if(s==0) {//ÕÒµ½´ğ°¸
+            if(s==0) {//æ‰¾åˆ°ç­”æ¡ˆ
                 arr[row][0]=nums[i];
                 arr[row][1]=nums[left];
                 arr[row][2]=nums[right];
                 col[row]=3;
                 row++;
-                while(left<right&&nums[left]==nums[left+1])//È¥ÖØ
+                while(left<right&&nums[left]==nums[left+1])//å»é‡
                     left++;
-                while(left<right&&nums[right]==nums[right-1])//È¥ÖØ
+                while(left<right&&nums[right]==nums[right-1])//å»é‡
                     right--;
-                left++;//
+                left++;
                 right--;
             }
         }
