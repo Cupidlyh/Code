@@ -24,7 +24,7 @@ int solutionPick(Solution* obj, int target) {
     return ans;
 }
 
-void solutionFree(Solution* obj) {
+void solutionFree(Solution* obj) { 
     free(obj);//释放空间
 }
 
