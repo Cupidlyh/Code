@@ -16,7 +16,7 @@
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
 
-int maxDepth(struct TreeNode* root){//¼ÆËãÊ÷µÄ×î´óÉî¶È
+int maxDepth(struct TreeNode* root){//è®¡ç®—æ ‘çš„æœ€å¤§æ·±åº¦
     if(root==NULL)
         return 0;
     int depth_left = maxDepth(root->left);
@@ -24,25 +24,25 @@ int maxDepth(struct TreeNode* root){//¼ÆËãÊ÷µÄ×î´óÉî¶È
     return depth_left>depth_right?depth_left+1:depth_right+1;
 }
 
-//level¾ÍÊÇµ±Ç°ÔªËØ´æ´¢µÄĞĞÊı
+//levelå°±æ˜¯å½“å‰å…ƒç´ å­˜å‚¨çš„è¡Œæ•°
 void levelorder(struct TreeNode *p,int **arr,int *col,int level){
-    if(p==NULL)//µ±½ÚµãÎª¿Õ¾Í·µ»Ø
+    if(p==NULL)//å½“èŠ‚ç‚¹ä¸ºç©ºå°±è¿”å›
         return ;
-    arr[level][col[level]++]=p->val;//½«ÔªËØ·Å½ø¶şÎ¬Êı×é
-    levelorder(p->left,arr,col,level+1);//±éÀú×óº¢×Ó
-    levelorder(p->right,arr,col,level+1);//±éÀúÓÒº¢×Ó
+    arr[level][col[level]++]=p->val;//å°†å…ƒç´ æ”¾è¿›äºŒç»´æ•°ç»„
+    levelorder(p->left,arr,col,level+1);//éå†å·¦å­©å­ï¼Œè¡Œæ•°åŠ 1
+    levelorder(p->right,arr,col,level+1);//éå†å³å­©å­ï¼Œè¡Œæ•°åŠ 1
     return ;
 }
 
 int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes){
-    *returnSize=maxDepth(root);//*returnSize¼ÇÂ¼µÄÊÇĞĞÊı
+    *returnSize=maxDepth(root);//*returnSizeè®°å½•çš„æ˜¯è¡Œæ•°
     int i;
-    int *col=(int *)malloc((*returnSize+1)*sizeof(int));//¿ª±ÙÒ»¸ö¼ÇÂ¼Ã¿ĞĞÓĞ¼¸¸öÔªËØµÄÒ»Î¬Êı×é
-    int **arr =(int **)malloc(sizeof(int*)*(*returnSize+1));//¿ª±Ù¶şÎ¬Êı×é
+    int *col=(int *)malloc((*returnSize+1)*sizeof(int));//å¼€è¾Ÿä¸€ä¸ªè®°å½•æ¯è¡Œæœ‰å‡ ä¸ªå…ƒç´ çš„ä¸€ç»´æ•°ç»„
+    int **arr =(int **)malloc(sizeof(int*)*(*returnSize+1));//å¼€è¾ŸäºŒç»´æ•°ç»„
     for(i=0; i<(*returnSize+1); i++)
         arr[i]=(int *)malloc(sizeof(int)*500);
-    memset(col,0,(*returnSize+1)*sizeof(int));//½«colÊı×é³õÊ¼»¯
-    levelorder(root,arr,col,0);//²ã´Î±éÀú
+    memset(col,0,(*returnSize+1)*sizeof(int));//å°†colæ•°ç»„åˆå§‹åŒ–
+    levelorder(root,arr,col,0);//å±‚æ¬¡éå†
     *returnColumnSizes=col;
     return arr;
 }
