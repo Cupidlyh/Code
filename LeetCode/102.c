@@ -26,7 +26,7 @@ int maxDepth(struct TreeNode* root){//计算树的最大深度
 
 //level就是当前元素存储的行数
 void levelorder(struct TreeNode *p,int **arr,int *col,int level){
-    if(p==NULL)//当节点为空就返回
+    if(p==NULL)//当节点为空就返回 
         return ;
     arr[level][col[level]++]=p->val;//将元素放进二维数组
     levelorder(p->left,arr,col,level+1);//遍历左孩子，行数加1
