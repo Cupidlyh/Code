@@ -19,7 +19,7 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
   int **arr =(int **)malloc(sizeof(int*)*17000);//arr为二维数组
     for(i=0; i<17000; i++)
         arr[i]=(int *)malloc(sizeof(int)*3);
-    for(i=0;i<numsSize-2;i++) {//遍历数组
+    for(i=0;i<numsSize-2;i++) {//遍历数组 
         if(i>0&&nums[i]==nums[i-1])//去重
             continue;
         left=i+1;//左指针
