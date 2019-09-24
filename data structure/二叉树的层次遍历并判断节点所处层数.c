@@ -21,7 +21,7 @@ void creatbitree(bitree **t)//先序建立二叉树
 {
     char ch;
     scanf("%c",&ch);
-    printf("%c",ch);
+    printf("%c",ch); 
     if(ch=='#')
         *t=NULL;
     else
