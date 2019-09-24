@@ -10,7 +10,7 @@
  * };
  */
 
-typedef struct queue//Ñ­»·¶ÓÁĞ
+typedef struct queue//å¾ªç¯é˜Ÿåˆ—
 {
     struct TreeNode *base[10000];
     int front;
@@ -18,36 +18,38 @@ typedef struct queue//Ñ­»·¶ÓÁĞ
 } queue;
 
 int maxLevelSum(struct TreeNode* root){
-    long long int sum=0,sum1=0;//sum¼ÇÂ¼Ã¿²ãÔËËãµÄºÍ£¬sum1¼ÇÂ¼Ä¿Ç°ÎªÖ¹ºÍµÄ×î´óÖµ
-    int i=1,max=0;//i¼ÇÂ¼²ãÊı£¬max¼ÇÂ¼µ±Ç°×î´óºÍµÄ²ãÊı
+    long long int sum=0,sum1=0;//sumè®°å½•æ¯å±‚è¿ç®—çš„å’Œï¼Œsum1è®°å½•ç›®å‰ä¸ºæ­¢å’Œçš„æœ€å¤§å€¼
+    int i=1,max=0;//iè®°å½•å±‚æ•°ï¼Œmaxè®°å½•å½“å‰æœ€å¤§å’Œçš„å±‚æ•°
     struct TreeNode *p;
     queue Q;
+    for(int i=0;i<10000;i++)//å°†é˜Ÿåˆ—ä¸­çš„baseæ•°ç»„åˆå§‹åŒ–ä¸ºNULL
+        Q.base[i]=NULL;
     Q.front=Q.rear=0;
-    if(root)//Èç¹û¸ù½Úµã´æÔÚ
+    if(root)//å¦‚æœæ ¹èŠ‚ç‚¹å­˜åœ¨
     {
         Q.base[Q.rear]=root;
         Q.rear=(Q.rear+1)%10000;
-        Q.base[Q.rear]=NULL;//·ÅÈëNULLÀ´´ïµ½½«Ã¿²ã·Ö¿ªµÄÄ¿µÄ£¬·½±ã¼ÇÂ¼²ãÊı
+        Q.base[Q.rear]=NULL;//æ”¾å…¥NULLæ¥è¾¾åˆ°å°†æ¯å±‚åˆ†å¼€çš„ç›®çš„ï¼Œæ–¹ä¾¿è®°å½•å±‚æ•°
         Q.rear=(Q.rear+1)%10000;
-        while(Q.front!=Q.rear)//²ã´Î±éÀú
+        while(Q.front!=Q.rear)//å±‚æ¬¡éå†
         {
             p=Q.base[Q.front];
-            if(p==NULL) {//µ±´ËÊ±ÎªNULLÊ±
-                if(Q.base[(Q.front+1)%10000]!=NULL){//µ±²»ÊÇ×îºóÒ»²ãÊ±
-                    Q.base[Q.rear]=NULL;//¼ÓÈëNULL´ú±íĞÂµÄÒ»²ãÒª¿ªÊ¼ÁË
+            if(p==NULL) {//å½“æ­¤æ—¶ä¸ºNULLæ—¶
+                if(Q.base[(Q.front+1)%10000]!=NULL){//å½“ä¸æ˜¯æœ€åä¸€å±‚æ—¶
+                    Q.base[Q.rear]=NULL;//åŠ å…¥NULLä»£è¡¨æ–°çš„ä¸€å±‚è¦å¼€å§‹äº†
                     Q.rear=(Q.rear+1)%10000;
                 }
-                if(sum>sum1) {//µ±Ç°²ãÊıµÄºÍ´óÓÚÖ®Ç°µÄºÍ
-                    sum1=sum;//¼ÇÂ¼ÏÂÀ´Õâ¸öºÍµÄÖµ
-                    max=i;//¼ÇÂ¼ÏÂ²ãÊı
+                if(sum>sum1) {//å½“å‰å±‚æ•°çš„å’Œå¤§äºä¹‹å‰çš„å’Œ
+                    sum1=sum;//è®°å½•ä¸‹æ¥è¿™ä¸ªå’Œçš„å€¼
+                    max=i;//è®°å½•ä¸‹å±‚æ•°
                 }
-                i++;//²ãÊı¼Ó1
-                sum=0;//sumÖØĞÂÖÃÎª0£¬ÒÔ±ãÏÂ´ÎµÄÔËËã
+                i++;//å±‚æ•°åŠ 1
+                sum=0;//sumé‡æ–°ç½®ä¸º0ï¼Œä»¥ä¾¿ä¸‹æ¬¡çš„è¿ç®—
             }
-            if(p!=NULL)//µ±p²»ÊÇNULLÊ±£¨NULLÖ»ÊÇ½«Ã¿²ã·Ö¿ª£©
-                sum=sum+p->val;//½«µ±Ç°²ãµÄÔªËØºÍ¼ÆËã³öÀ´
+            if(p!=NULL)//å½“pä¸æ˜¯NULLæ—¶ï¼ˆNULLåªæ˜¯å°†æ¯å±‚åˆ†å¼€ï¼‰
+                sum=sum+p->val;//å°†å½“å‰å±‚çš„å…ƒç´ å’Œè®¡ç®—å‡ºæ¥
             Q.front=(Q.front+1)%10000;
-            if(p!=NULL){//µ±p²»ÊÇNULLÊ±£¨NULLÖ»ÊÇ½«Ã¿²ã·Ö¿ª£©
+            if(p!=NULL){//å½“pä¸æ˜¯NULLæ—¶ï¼ˆNULLåªæ˜¯å°†æ¯å±‚åˆ†å¼€ï¼‰
                 if(p->left)
                 {
                     Q.base[Q.rear]=p->left;
