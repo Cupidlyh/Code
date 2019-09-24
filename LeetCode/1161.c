@@ -60,7 +60,7 @@ int maxLevelSum(struct TreeNode* root){
                     Q.base[Q.rear]=p->right;
                     Q.rear=(Q.rear+1)%10000;
                 }
-            }
+            } 
         }
     }
     return max;
