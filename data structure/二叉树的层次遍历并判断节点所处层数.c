@@ -3,21 +3,21 @@
 
 #define MAXQSIZE 100
 
-typedef struct bitree//Ê÷µÄ½á¹¹
+typedef struct bitree//æ ‘çš„ç»“æ„
 {
     char data;
     struct bitree *left;
     struct bitree *right;
 } bitree;
 
-typedef struct queue//¶ÓÁĞ
+typedef struct queue//é˜Ÿåˆ—
 {
     bitree *base[100];
     int front;
     int rear;
 } queue;
 
-void creatbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
+void creatbitree(bitree **t)//å…ˆåºå»ºç«‹äºŒå‰æ ‘
 {
     char ch;
     scanf("%c",&ch);
@@ -33,32 +33,32 @@ void creatbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
     }
 }
 
-void levelorder(bitree *t,int *depth)//¶ş²æÊ÷µÄ²ã´Î±éÀú
+void levelorder(bitree *t,int *depth)//äºŒå‰æ ‘çš„å±‚æ¬¡éå†
 {
     bitree *p;
     queue Q;
-    for(int i=0; i<MAXQSIZE; i++)
+    for(int i=0; i<MAXQSIZE; i++)//å°†baseæ•°ç»„åˆå§‹åŒ–ä¸ºNULLï¼Œæ–¹ä¾¿æœ€åç»“æŸæ—¶çš„åˆ¤æ–­
         Q.base[i]=NULL;
     Q.front=Q.rear=0;
     if(t)
     {
         Q.base[Q.rear]=t;
         Q.rear=(Q.rear+1)%MAXQSIZE;
-        Q.base[Q.rear]=NULL;//·ÅÈëNULLÀ´´ïµ½½«Ã¿²ã·Ö¿ªµÄÄ¿µÄ£¬·½±ã¼ÇÂ¼²ãÊı
+        Q.base[Q.rear]=NULL;//æ”¾å…¥NULLæ¥è¾¾åˆ°å°†æ¯å±‚åˆ†å¼€çš„ç›®çš„ï¼Œæ–¹ä¾¿è®°å½•å±‚æ•°
         Q.rear=(Q.rear+1)%MAXQSIZE;
         while(Q.front!=Q.rear)
         {
             p=Q.base[Q.front];
-            if(p==NULL)  //µ±´ËÊ±ÎªNULLÊ±
+            if(p==NULL)  //å½“æ­¤æ—¶ä¸ºNULLæ—¶
             {
-                if(Q.base[(Q.front+1)%MAXQSIZE]!=NULL) //µ±²»ÊÇ×îºóÒ»²ãÊ±
+                if(Q.base[(Q.front+1)%MAXQSIZE]!=NULL) //å½“ä¸æ˜¯æœ€åä¸€å±‚æ—¶
                 {
-                    Q.base[Q.rear]=NULL;//¼ÓÈëNULL´ú±íĞÂµÄÒ»²ãÒª¿ªÊ¼ÁË
+                    Q.base[Q.rear]=NULL;//åŠ å…¥NULLä»£è¡¨æ–°çš„ä¸€å±‚è¦å¼€å§‹äº†
                     Q.rear=(Q.rear+1)%MAXQSIZE;
 
                 }
-                (*depth)++;//²ãÊı¼Ó1
-                printf("  *µÚ%d²ãµÄÔªËØÈçÉÏ*\n",*depth);
+                (*depth)++;//å±‚æ•°åŠ 1
+                printf("  *ç¬¬%då±‚çš„å…ƒç´ å¦‚ä¸Š*\n",*depth);
             }
             if(p!=NULL)
                 printf("%c ",p->data);
@@ -84,12 +84,12 @@ int main()
 {
     bitree *root;
     int depth=0;
-    freopen("in.txt","r",stdin);//´ÓÎÄ¼şÖĞ¶ÁÈë
-    printf("ÇëÒÔÏÈĞòµÄË³ĞòÊäÈëÏëÒª¹¹½¨µÄ¶ş²æÊ÷\n");
+    freopen("in.txt","r",stdin);//ä»æ–‡ä»¶ä¸­è¯»å…¥
+    printf("è¯·ä»¥å…ˆåºçš„é¡ºåºè¾“å…¥æƒ³è¦æ„å»ºçš„äºŒå‰æ ‘\n");
     creatbitree(&root);
-    printf("\n¶ş²æÊ÷¹¹½¨³É¹¦\n");
-    printf("²ã´Î±éÀúµÄ½á¹û\n");
+    printf("\näºŒå‰æ ‘æ„å»ºæˆåŠŸ\n");
+    printf("å±‚æ¬¡éå†çš„ç»“æœ\n");
     levelorder(root,&depth);
-    printf("\n*  Ê÷µÄÉî¶ÈÎª£º%d  *\n",depth);
+    printf("\n*  æ ‘çš„æ·±åº¦ä¸ºï¼š%d  *\n",depth);
     return 0;
 }
