@@ -2,21 +2,21 @@ package leetcode;
 
 public class Solution {
 	public int lengthOfLastWord(String s) {
-        if(s.length()==0) {//µ±Ëù´«×Ö·û³¤¶ÈÎª0Ê±
+        if(s.length()==0) {//å½“æ‰€ä¼ å­—ç¬¦é•¿åº¦ä¸º0æ—¶
             return 0;
-        }
+        } 
         int len=s.length()-1,i,num=0;
-        while(len>0&&s.charAt(len)==' ') {//½«×Ö·û´®Î²²¿µÄ¿Õ¸ñÌø¹ı
+        while(len>0&&s.charAt(len)==' ') {//å°†å­—ç¬¦ä¸²å°¾éƒ¨çš„ç©ºæ ¼è·³è¿‡
             len=len-1;
         }
-        if(len==-1) {//Èç¹û×Ö·û´®È«Îª¿Õ¸ñ
+        if(len==-1) {//å¦‚æœå­—ç¬¦ä¸²å…¨ä¸ºç©ºæ ¼
             return 0;
         }
-        for(i=len;i>=0;i--) {//Ö±½ÓËã×îºóÒ»¸öµ¥´ÊµÄ³¤¶È
-            if(s.charAt(i)==' ')//Èç¹ûÓö¼û¿Õ¸ñ£¬ËµÃ÷×îºóÒ»¸öµ¥´Ê½áÊøÁË
+        for(i=len;i>=0;i--) {//ç›´æ¥ç®—æœ€åä¸€ä¸ªå•è¯çš„é•¿åº¦
+            if(s.charAt(i)==' ')//å¦‚æœé‡è§ç©ºæ ¼ï¼Œè¯´æ˜æœ€åä¸€ä¸ªå•è¯ç»“æŸäº†
                 break;
             else
-                num++;//numÊÇ¼ÇÂ¼×îºóÒ»¸öµ¥´ÊµÄ³¤¶È
+                num++;//numæ˜¯è®°å½•æœ€åä¸€ä¸ªå•è¯çš„é•¿åº¦
         }
         return num;
     }
