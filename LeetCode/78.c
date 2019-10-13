@@ -8,35 +8,33 @@
  */
 
 int row;
-//iÊÇ×Ó¼¯ÖĞÔªËØµÄ¸öÊı£¬m¼ÇÂ¼tempÊı×éÔªËØ´æ´¢µÄÎ»ÖÃ£¬num¼ÇÂ¼numsÊı×éÖĞ±éÀúµ½µÄÔªËØµÄÎ»ÖÃ
+//iæ˜¯å­é›†ä¸­å…ƒç´ çš„ä¸ªæ•°ï¼Œmè®°å½•tempæ•°ç»„å…ƒç´ å­˜å‚¨çš„ä½ç½®ï¼Œnumè®°å½•numsæ•°ç»„ä¸­éå†åˆ°çš„å…ƒç´ çš„ä½ç½®
 void dfs(int **arr,int *nums,int *temp,int *col,int i,int m,int num,int numsSize) {
-    if(i==0) {//µ±¸öÊıÎª0Ê±
-        col[row]=m;//¼ÇÂ¼´ËĞĞÔªËØµÄ¸öÊı
-        for(int j=0;j<m;j++)//½«ÔªËØ·Å½øarrÊı×éÖĞ
+    if(i==0) {//å½“ä¸ªæ•°ä¸º0æ—¶
+        col[row]=m;//è®°å½•æ­¤è¡Œå…ƒç´ çš„ä¸ªæ•°
+        for(int j=0;j<m;j++)//å°†å…ƒç´ æ”¾è¿›arræ•°ç»„ä¸­
             arr[row][j]=temp[j];
-        row=row+1;//¿ªÊ¼¼ÇÂ¼ÏÂÒ»ĞĞ
+        row=row+1;//å¼€å§‹è®°å½•ä¸‹ä¸€è¡Œ
         return ;
     }
     for(;num<numsSize;num++) {
-        temp[m]=nums[num];//´æ½øÁÙÊ±Êı×éÖĞ
-        i=i-1;//ÔªËØ¸öÊı¼õ1
-        dfs(arr,nums,temp,col,i,m+1,num+1,numsSize);
-        i=i+1;//´ÓdfsÖĞÌø³ö¾ÍÒª½«ÔªËØ¸öÊıÖØĞÂ¼Ó1
+        temp[m]=nums[num];//å­˜è¿›ä¸´æ—¶æ•°ç»„ä¸­
+        dfs(arr,nums,temp,col,i-1,m+1,num+1,numsSize);
     }
     return ;
 }
 
 int** subsets(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
     int i;
-    row=1;//´ÓµÚÒ»ĞĞ¿ªÊ¼´æ´¢
-    int n=(int)pow(2,numsSize);//¼ÆËã×Ó¼¯µÄ¸öÊı
-    int *temp=(int *)malloc(numsSize*sizeof(int));//ÁÙÊ±´æ·ÅÊı×éÖĞµÄÔªËØ
-    int *col=(int *)malloc(n*sizeof(int));//¿ª±ÙÒ»¸ö¼ÇÂ¼Ã¿ĞĞÓĞ¼¸¸öÔªËØµÄÊı×é
-    int **arr =(int **)malloc(sizeof(int*)*n);//¿ª±Ù¶şÎ¬Êı×é
+    row=1;//ä»ç¬¬ä¸€è¡Œå¼€å§‹å­˜å‚¨
+    int n=(int)pow(2,numsSize);//è®¡ç®—å­é›†çš„ä¸ªæ•°
+    int *temp=(int *)malloc(numsSize*sizeof(int));//ä¸´æ—¶å­˜æ”¾æ•°ç»„ä¸­çš„å…ƒç´ 
+    int *col=(int *)malloc(n*sizeof(int));//å¼€è¾Ÿä¸€ä¸ªè®°å½•æ¯è¡Œæœ‰å‡ ä¸ªå…ƒç´ çš„æ•°ç»„
+    int **arr =(int **)malloc(sizeof(int*)*n);//å¼€è¾ŸäºŒç»´æ•°ç»„
     for(i=0; i<n; i++)
         arr[i]=(int *)malloc(sizeof(int)*1000);
-    col[0]=0;//×Ó¼¯Ö®Ò»ÊÇ¿Õ¼¯ºÏ
-    for(i=1;i<=numsSize;i++) {//iÎª×Ó¼¯ÖĞÔªËØµÄ¸öÊı
+    col[0]=0;//å­é›†ä¹‹ä¸€æ˜¯ç©ºé›†åˆ
+    for(i=1;i<=numsSize;i++) {//iä¸ºå­é›†ä¸­å…ƒç´ çš„ä¸ªæ•°
         dfs(arr,nums,temp,col,i,0,0,numsSize);
     }
     *returnSize=n;
