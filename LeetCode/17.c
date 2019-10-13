@@ -5,19 +5,19 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 
-iint dlen,row;//dlenÊÇ¼ÇÂ¼Ëù¸øµÄÊı×Ö×Ö·ûÊı×éµÄ³¤¶È£¬row¼ÇÂ¼µÄÊÇ×îºó·µ»ØÊı×éµÄĞĞ
-//digitsÊÇÌâÄ¿Ëù¸øµÄÊı×é£¬arrÊÇÎÒÃÇ×Ô¼º¿ª±ÙµÄ¼ÇÂ¼½á¹ûµÄÊı×é£¬nÊÇ¼ÇÂ¼digitsÊı×é±éÀúµÄÎ»ÖÃ£¬col¼ÇÂ¼arrÊı×é´æ´¢µ½µÄÁĞÊı
+int dlen,row;//dlenæ˜¯è®°å½•æ‰€ç»™çš„æ•°å­—å­—ç¬¦æ•°ç»„çš„é•¿åº¦ï¼Œrowè®°å½•çš„æ˜¯æœ€åè¿”å›æ•°ç»„çš„è¡Œ
+//digitsæ˜¯é¢˜ç›®æ‰€ç»™çš„æ•°ç»„ï¼Œarræ˜¯æˆ‘ä»¬è‡ªå·±å¼€è¾Ÿçš„è®°å½•ç»“æœçš„æ•°ç»„ï¼Œnæ˜¯è®°å½•digitsæ•°ç»„éå†çš„ä½ç½®ï¼Œcolè®°å½•arræ•°ç»„å­˜å‚¨åˆ°çš„åˆ—æ•°
 void dfs(char *digits,char **arr,int n,int col) {
-    if(n==dlen) {//µ±digitsÊı×é±éÀú½áÊøÊ±
+    if(n==dlen) {//å½“digitsæ•°ç»„éå†ç»“æŸæ—¶
         arr[row][col]='\0';
-        row=row+1;//ĞĞÊı¼ÓÒ»£¬¿ªÊ¼ÏÂÒ»ĞĞµÄ´æ´¢
+        row=row+1;//è¡Œæ•°åŠ ä¸€ï¼Œå¼€å§‹ä¸‹ä¸€è¡Œçš„å­˜å‚¨
         int k;
-        for(k=0;k<=dlen;k++)//´ËĞĞÏÈ±£´æÏÂÉÏÒ»ĞĞµÄ½á¹û£¬ÒòÎª»ØËİ½èÓÃÁËÉÏÒ»´ÎµÄ½á¹û
+        for(k=0;k<=dlen;k++)//æ­¤è¡Œå…ˆä¿å­˜ä¸‹ä¸Šä¸€è¡Œçš„ç»“æœï¼Œå› ä¸ºå›æº¯å€Ÿç”¨äº†ä¸Šä¸€æ¬¡çš„ç»“æœ
             arr[row][k]=arr[row-1][k];
         return ;
     }
 
-    if(digits[n]=='2') {//Êı×ÖÎª2Ê±£¬½«Ëù¶ÔÓ¦µÄ×ÖÄ¸ÒÀ´Î´æ½øarrÊı×éÖĞ²¢½øĞĞµİ¹éµ÷ÓÃ
+    if(digits[n]=='2') {//æ•°å­—ä¸º2æ—¶ï¼Œå°†æ‰€å¯¹åº”çš„å­—æ¯ä¾æ¬¡å­˜è¿›arræ•°ç»„ä¸­å¹¶è¿›è¡Œé€’å½’è°ƒç”¨
         arr[row][col]='a';
         dfs(digits,arr,n+1,col+1);
         arr[row][col]='b';
@@ -99,14 +99,14 @@ char ** letterCombinations(char * digits, int* returnSize){
     int i;
     dlen=strlen(digits);
     row=0;
-    char **arr =(char **)malloc(sizeof(char*)*20000);//¿ª±Ù¶şÎ¬Êı×é
+    char **arr =(char **)malloc(sizeof(char*)*20000);//å¼€è¾ŸäºŒç»´æ•°ç»„
     for(i=0; i<20000; i++)
         arr[i]=(char *)malloc(sizeof(char)*(dlen+1));
-    if(dlen==0) {//µ±Ëù¸øÊı×é³¤¶ÈÎª0Ê±
+    if(dlen==0) {//å½“æ‰€ç»™æ•°ç»„é•¿åº¦ä¸º0æ—¶
         *returnSize=0;
         return arr;
     }
-    dfs(digits,arr,0,0);//µİ¹éµ÷ÓÃ
+    dfs(digits,arr,0,0);//é€’å½’è°ƒç”¨
     *returnSize=row;
     return arr;
 }
