@@ -11,32 +11,33 @@ int row;
 
 void dfs(int *nums,int *map,int numsSize,int colu,int *col,int **arr) {
     int i;
-    if(colu==numsSize) {//µ±ËùÓĞÊı×ÖÅÅÁĞÍê³ÉÖ®ºó
+    if(colu==numsSize) {//å½“æ‰€æœ‰æ•°å­—æ’åˆ—å®Œæˆä¹‹å
         col[row]=numsSize;
-        row=row+1;//ÏÂÒ»ÖÖÇé¿ö´æÔÚÏÂÒ»ĞĞ
-        for(i=0;i<numsSize;i++)//½«´ËÖÖÇé¿ö´æ½øÏÂÒ»ĞĞÖĞ£¬ÒòÎªÖ®ºó»áÓÃµ½
+        row=row+1;//ä¸‹ä¸€ç§æƒ…å†µå­˜åœ¨ä¸‹ä¸€è¡Œ
+        for(i=0;i<numsSize;i++)//å°†æ­¤ç§æƒ…å†µå­˜è¿›ä¸‹ä¸€è¡Œä¸­ï¼Œå› ä¸ºä¹‹åä¼šç”¨åˆ°
             arr[row][i]=arr[row-1][i];
         return ;
     }
-    for(i=0;i<numsSize;i++) {//±éÀúÌâÄ¿Ëù¸øµÄÒ»Î¬Êı×é
-        if(map[i]==0) {//ÕÒµ½Ã»±»±ê¼ÇµÄÊı×Ö
-            arr[row][colu]=nums[i];//´æ½ø¶şÎ¬Êı×éÖĞ
-            map[i]=1;//½«´ËÊı×Ö±ê¼Ç
-            dfs(nums,map,numsSize,colu+1,col,arr);//µİ¹éµ÷ÓÃ
-            map[i]=0;//µİ¹éµ÷ÓÃ»ØÍË³öÀ´Ê±£¬Òª½«´ËÊı×ÖµÄ±ê¼ÇÇå¿Õ
+    for(i=0;i<numsSize;i++) {//éå†é¢˜ç›®æ‰€ç»™çš„ä¸€ç»´æ•°ç»„
+        if(map[i]==0) {//æ‰¾åˆ°æ²¡è¢«æ ‡è®°çš„æ•°å­—
+            arr[row][colu]=nums[i];//å­˜è¿›äºŒç»´æ•°ç»„ä¸­
+            map[i]=1;//å°†æ­¤æ•°å­—æ ‡è®°
+            dfs(nums,map,numsSize,colu+1,col,arr);//é€’å½’è°ƒç”¨
+            map[i]=0;//é€’å½’è°ƒç”¨å›é€€å‡ºæ¥æ—¶ï¼Œè¦å°†æ­¤æ•°å­—çš„æ ‡è®°æ¸…ç©º
         }
     }
+    return ;
 }
 
 int** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
-    int i,colu=0;//colu±íÊ¾¼´½«´æ½ø¶şÎ¬Êı×éµÄÄÄÒ»ÁĞ
-    row=0;//È«¾Ö±äÁ¿£¬±íÊ¾¼´½«´æ½ø¶şÎ¬Êı×éµÄÄÄÒ»ĞĞ
+    int i,colu=0;//coluè¡¨ç¤ºå³å°†å­˜è¿›äºŒç»´æ•°ç»„çš„å“ªä¸€åˆ—
+    row=0;//å…¨å±€å˜é‡ï¼Œè¡¨ç¤ºå³å°†å­˜è¿›äºŒç»´æ•°ç»„çš„å“ªä¸€è¡Œ
     int *col=(int *)malloc(50000*sizeof(int));
-    int **arr =(int **)malloc(sizeof(int*)*50000);//¿ª±Ù¶şÎ¬Êı×é
+    int **arr =(int **)malloc(sizeof(int*)*50000);//å¼€è¾ŸäºŒç»´æ•°ç»„
     for(i=0; i<50000; i++)
         arr[i]=(int *)malloc(sizeof(int)*100);
-    int *map=(int *)malloc(numsSize*sizeof(int));//¿ª±ÙÒ»¸öÒ»Î¬µÄ±ê¼ÇÊı×é
-    memset(map,0,numsSize*sizeof(int));//Êı×é³õÊ¼»¯
+    int *map=(int *)malloc(numsSize*sizeof(int));//å¼€è¾Ÿä¸€ä¸ªä¸€ç»´çš„æ ‡è®°æ•°ç»„
+    memset(map,0,numsSize*sizeof(int));//æ•°ç»„åˆå§‹åŒ–
     dfs(nums,map,numsSize,colu,col,arr);
     *returnSize=row;
     *returnColumnSizes=col;
