@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmp(const void *p1, const void *p2){//±È½ÏÆ÷
-    return ((int **)p1)[0][0] - ((int **)p2)[0][0];
+int cmp(const void *p1, const void *p2){//æ¯”è¾ƒå™¨
+    return (*((int **)p1))[0] - (*((int **)p2))[0];
 }
 
 int** merge(int** intervals, int intervalsSize, int* intervalsColSize, int* returnSize, int** returnColumnSizes){
-    qsort(intervals,intervalsSize, sizeof(intervals[0]),cmp);//½«¶şÎ¬Êı×é°´ÕÕ×ó±ß½çµÄ´óĞ¡À´½øĞĞ´ÓĞ¡µ½´óÅÅĞò
+    qsort(intervals,intervalsSize, sizeof(intervals[0]),cmp);//å°†äºŒç»´æ•°ç»„æŒ‰ç…§å·¦è¾¹ç•Œçš„å¤§å°æ¥è¿›è¡Œä»å°åˆ°å¤§æ’åº
     int i,row = 0;
-    int **arr = (int **)malloc(sizeof(int *)*1000);//¿ª±Ù¶şÎ¬Êı×é
+    int **arr = (int **)malloc(sizeof(int *)*1000);//å¼€è¾ŸäºŒç»´æ•°ç»„
     for(i=0;i<1000;i++)
         arr[i] = (int *)malloc(sizeof(int)*2);
     for(i=0;i<intervalsSize;i++) {
         arr[row][0] = intervals[i][0];
         arr[row][1] = intervals[i][1];
-        while(i<intervalsSize-1 && arr[row][1]>=intervals[i+1][0]) {//Èç¹ûºóÒ»ĞĞµÄ×ó±ß½çĞ¡ÓÚµÈÓÚÇ°Ò»ĞĞµÄÓÒ±ß½ç¾ÍËµÃ÷¿ÉÒÔºÏ²¢
-            arr[row][1] = arr[row][1]>intervals[i+1][1]?arr[row][1]:intervals[i+1][1];//ºÏ²¢ºóµÄÇø¼äµÄÓÒ±ß½çÒªÑ¡Ôñ´óµÄÄÇÒ»¸ö
+        while(i<intervalsSize-1 && arr[row][1]>=intervals[i+1][0]) {//å¦‚æœåä¸€è¡Œçš„å·¦è¾¹ç•Œå°äºç­‰äºå‰ä¸€è¡Œçš„å³è¾¹ç•Œå°±è¯´æ˜å¯ä»¥åˆå¹¶
+            arr[row][1] = arr[row][1]>intervals[i+1][1]?arr[row][1]:intervals[i+1][1];//åˆå¹¶åçš„åŒºé—´çš„å³è¾¹ç•Œè¦é€‰æ‹©å¤§çš„é‚£ä¸€ä¸ª
             i = i + 1;
         }
         row = row + 1;
