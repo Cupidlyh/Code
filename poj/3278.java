@@ -1,30 +1,30 @@
 package poj3278;
 
-import java.util.*;//°üº¬java.util°üÖĞËùÓĞµÄÀà
+import java.util.*;//åŒ…å«java.utilåŒ…ä¸­æ‰€æœ‰çš„ç±»
 
-public class Main {//ÓÃ¹ã¶ÈÓÅÏÈËÑË÷À´×ö
+public class Main {//ç”¨å¹¿åº¦ä¼˜å…ˆæœç´¢æ¥åš
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		while(in.hasNextInt()) {//ÊäÈë¶à×éÊı¾İ
-			int map[] = new int[100001];//±ê¼ÇÊı×é
-			Queue<Integer> queue = new LinkedList<Integer>();//¶ÓÁĞ
+		while(in.hasNext()) {//è¾“å…¥å¤šç»„æ•°æ®
+			int map[] = new int[100001];//æ ‡è®°æ•°ç»„
+			Queue<Integer> queue = new LinkedList<Integer>();//é˜Ÿåˆ—
 			int n,k,num = 0;
 			n = in.nextInt();
 			k = in.nextInt();
-			queue.add(n);//Ñ¹Èë¶ÓÁĞ
+			queue.add(n);//å‹å…¥é˜Ÿåˆ—
 			map[n] = 1;
-			queue.add(-1);//-1ÊÇÓÃÀ´½«Ã¿Ò»²½¿ÉÒÔµ½´ïµÄµã¸ô¿ª
+			queue.add(-1);//-1æ˜¯ç”¨æ¥å°†æ¯ä¸€æ­¥å¯ä»¥åˆ°è¾¾çš„ç‚¹éš”å¼€
 			while(!queue.isEmpty()) {
-				int temp = queue.poll();//´Ó¶ÓÁĞµ¯³ö
+				int temp = queue.poll();//ä»é˜Ÿåˆ—å¼¹å‡º
 				if(temp == -1) {
-					num++;//²½Êı¼Ó1
+					num++;//æ­¥æ•°åŠ 1
 					queue.add(-1);
 					continue;
 				}
 				else {
-					if(temp == k)//µÈÓÚkÊ±ËµÃ÷ÕÒµ½ÁË
+					if(temp == k)//ç­‰äºkæ—¶è¯´æ˜æ‰¾åˆ°äº†
 						break;
-					//´æÈëµ±Ç°µãËùÓĞ¿ÉÄÜ×ß¹ıµÄµã²¢½øĞĞÈ¥ÖØ
+					//å­˜å…¥å½“å‰ç‚¹æ‰€æœ‰å¯èƒ½èµ°è¿‡çš„ç‚¹å¹¶è¿›è¡Œå»é‡
 					if(temp - 1 >= 0 && map[temp - 1] == 0) {
 						queue.add(temp - 1);
 						map[temp - 1] = 1;
