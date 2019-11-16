@@ -1,7 +1,6 @@
-//¶ş²æÊ÷µÄÏÈĞò½¨Á¢£¬ÏÈÖĞºóĞò±éÀú
+//äºŒå‰æ ‘çš„å…ˆåºå»ºç«‹ï¼Œå…ˆä¸­ååºéå†
 #include <stdio.h>
 #include <stdlib.h>
-#define MAXTSIZE 100
 
 typedef struct bitree
 {
@@ -10,7 +9,7 @@ typedef struct bitree
     struct bitree *rchild;
 } bitree;
 
-void createbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
+void createbitree(bitree **t)//å…ˆåºå»ºç«‹äºŒå‰æ ‘
 {
     char ch;
     scanf("%c",&ch);
@@ -19,14 +18,14 @@ void createbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
         *t=NULL;
     else
     {
-        *t=(bitree*)malloc(MAXTSIZE*sizeof(bitree));
+        *t=(bitree*)malloc(sizeof(bitree));
         (*t)->data=ch;
         createbitree(&(*t)->lchild);
         createbitree(&(*t)->rchild);
     }
 }
 
-void preorder(bitree *t)//ÏÈĞò±éÀú
+void preorder(bitree *t)//å…ˆåºéå†
 {
     if(t)
     {
@@ -36,7 +35,7 @@ void preorder(bitree *t)//ÏÈĞò±éÀú
     }
 }
 
-void inorder(bitree *t)//ÖĞĞò±éÀú
+void inorder(bitree *t)//ä¸­åºéå†
 {
     if(t)
     {
@@ -46,7 +45,7 @@ void inorder(bitree *t)//ÖĞĞò±éÀú
     }
 }
 
-void postorder(bitree *t)//ºóĞò±éÀú
+void postorder(bitree *t)//ååºéå†
 {
     if(t)
     {
@@ -58,18 +57,18 @@ void postorder(bitree *t)//ºóĞò±éÀú
 
 int main()
 {
-    printf("ÇëÒÔÕıÈ·µÄË³ĞòÊäÈëÏëÒªÏÈĞò½¨Á¢¶ş²æÊ÷µÄÊı¾İ\n");
+    printf("è¯·ä»¥æ­£ç¡®çš„é¡ºåºè¾“å…¥æƒ³è¦å…ˆåºå»ºç«‹äºŒå‰æ ‘çš„æ•°æ®\n");
     bitree *root;
     freopen("in.txt","r",stdin);
     createbitree(&root);
     printf("\n");
-    printf("ÏÈĞò±éÀú¶ş²æÊ÷µÄ½á¹û£º");
+    printf("å…ˆåºéå†äºŒå‰æ ‘çš„ç»“æœï¼š");
     preorder(root);
     printf("\n");
-    printf("ÖĞĞò±éÀú¶ş²æÊ÷µÄ½á¹û£º");
+    printf("ä¸­åºéå†äºŒå‰æ ‘çš„ç»“æœï¼š");
     inorder(root);
     printf("\n");
-    printf("ºóĞò±éÀú¶ş²æÊ÷µÄ½á¹û£º");
+    printf("ååºéå†äºŒå‰æ ‘çš„ç»“æœï¼š");
     postorder(root);
     printf("\n");
     return 0;
