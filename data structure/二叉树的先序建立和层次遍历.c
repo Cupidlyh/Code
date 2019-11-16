@@ -3,21 +3,21 @@
 
 #define MAXQSIZE 100
 
-typedef struct bitree//Ê÷µÄ½á¹¹
+typedef struct bitree//æ ‘çš„ç»“æ„
 {
     char data;
     struct bitree *left;
     struct bitree *right;
 } bitree;
 
-typedef struct queue//¶ÓÁĞ
+typedef struct queue//é˜Ÿåˆ—
 {
-    bitree *base[100];
+    bitree *base[MAXQSIZE];
     int front;
     int rear;
 } queue;
 
-void creatbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
+void creatbitree(bitree **t)//å…ˆåºå»ºç«‹äºŒå‰æ ‘
 {
     char ch;
     scanf("%c",&ch);
@@ -33,7 +33,7 @@ void creatbitree(bitree **t)//ÏÈĞò½¨Á¢¶ş²æÊ÷
     }
 }
 
-void levelorder(bitree *t)//¶ş²æÊ÷µÄ²ã´Î±éÀú
+void levelorder(bitree *t)//äºŒå‰æ ‘çš„å±‚æ¬¡éå†
 {
     bitree *p;
     queue Q;
@@ -64,11 +64,11 @@ void levelorder(bitree *t)//¶ş²æÊ÷µÄ²ã´Î±éÀú
 int main()
 {
     bitree *root;
-    freopen("in.txt","r",stdin);//´ÓÎÄ¼şÖĞ¶ÁÈë
-    printf("ÇëÒÔÏÈĞòµÄË³ĞòÊäÈëÏëÒª¹¹½¨µÄ¶ş²æÊ÷\n");
+    freopen("in.txt","r",stdin);//ä»æ–‡ä»¶ä¸­è¯»å…¥
+    printf("è¯·ä»¥å…ˆåºçš„é¡ºåºè¾“å…¥æƒ³è¦æ„å»ºçš„äºŒå‰æ ‘\n");
     creatbitree(&root);
-    printf("\n¶ş²æÊ÷¹¹½¨³É¹¦\n");
-    printf("²ã´Î±éÀúµÄ½á¹û\n");
+    printf("\näºŒå‰æ ‘æ„å»ºæˆåŠŸ\n");
+    printf("å±‚æ¬¡éå†çš„ç»“æœ\n");
     levelorder(root);
     return 0;
 }
