@@ -21,7 +21,7 @@ void dijkstra(int Graph[N][N],int v0,int n)//n为有向图顶点个数
         if(length[v] < INT_MAX)//如果v0和v之间有弧，则将v的前驱置为v0
             path[v] = v0;
     }
-    path[v0] = 0;
+    length[v0] = 0;//源点到源点的距离为0
     sign[v0] = 1;//将v0加入到sign中
 
     //初始化结束，开始循环，每次求得v0到某个顶点v的最短路径，将v加入到sign中
