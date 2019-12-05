@@ -25,7 +25,7 @@ void dijkstra(int Graph[N][N],int v0,int n)//n为有向图顶点个数
     sign[v0] = 1;//将v0加入到sign中
 
     //初始化结束，开始循环，每次求得v0到某个顶点v的最短路径，将v加入到sign中
-    for(i = 1; i < n; i++)
+    for(i = 1; i < n; i++)//对其余n-1个顶点依次进行计算
     {
         min = INT_MAX;
         for(w = 0; w < n; w++)
