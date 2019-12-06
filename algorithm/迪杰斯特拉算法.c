@@ -52,9 +52,6 @@ void dijkstra(int Graph[N][N],int v0,int n)//n为有向图顶点个数
 int main()
 {
     memset(sign,0,sizeof(sign));//sign初始化为0
-    memset(path,-1,sizeof(path));//path初始化为-1
-    for(int j = 0; j < N; j++)//初始化length为整型最大值
-        length[j] = INT_MAX;
     int Graph[N][N];//有向图Graph
     for(int i = 0; i < N; i++)//初始化Graph为整型最大值，用以表示无连接
         for(int j = 0; j < N; j++)
