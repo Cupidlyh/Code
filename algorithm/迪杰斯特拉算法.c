@@ -6,8 +6,8 @@
 #define N 1000//数组的大小，可随问题的规模而改变
 
 //之所以数组开辟成long long int是因为防止下面有可能出现越界的情况
-long long int sign[N];//记录从源点v0到终点是否已经被确定最短路径
-long long int path[N];//记录从源点v0到终点的当前路径上的直接前驱顶点序号
+int sign[N];//记录从源点v0到终点是否已经被确定最短路径
+int path[N];//记录从源点v0到终点的当前路径上的直接前驱顶点序号
 long long int length[N];//记录从源点v0到终点的当前最短路径长度
 
 
