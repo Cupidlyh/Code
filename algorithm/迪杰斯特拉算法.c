@@ -14,6 +14,7 @@ long long int length[N];//记录从源点v0到终点的当前最短路径长度
 //用迪杰斯特拉算法求有向图的v0点到其余各点的最短路径
 void dijkstra(int Graph[N][N],int v0,int n)//n为有向图顶点个数
 {
+    memset(sign,0,sizeof(sign));//sign初始化为0
     int i,v,w,min;
     for(v = 0; v < n; v++)//n个顶点依次初始化
     {
@@ -51,7 +52,6 @@ void dijkstra(int Graph[N][N],int v0,int n)//n为有向图顶点个数
 
 int main()
 {
-    memset(sign,0,sizeof(sign));//sign初始化为0
     int Graph[N][N];//有向图Graph
     for(int i = 0; i < N; i++)//初始化Graph为整型最大值，用以表示无连接
         for(int j = 0; j < N; j++)
