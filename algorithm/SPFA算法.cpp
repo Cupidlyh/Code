@@ -3,25 +3,25 @@
 #include <queue>
 #include <cstring>
 using namespace std;
-const int MAXN = 10010;//¿É¸ù¾İÒªÇóÀ´¸Ä±ä´óĞ¡
+const int MAXN = 10010;//å¯æ ¹æ®è¦æ±‚æ¥æ”¹å˜å¤§å°
 
-struct Edge//±ß½á¹¹Ìå
+struct Edge//è¾¹ç»“æ„ä½“
 {
-    int next;//ÓëµÚiÌõ±ßÍ¬Ò»ÆğµãµÄÉÏÒ»Ìõ±ßµÄÎ»ÖÃ
-    int to;//´Ë±ßµÄÖÕµã
-    int len;//±ßµÄÈ¨Öµ
+    int next;//ä¸ç¬¬iæ¡è¾¹åŒä¸€èµ·ç‚¹çš„ä¸Šä¸€æ¡è¾¹çš„ä½ç½®
+    int to;//æ­¤è¾¹çš„ç»ˆç‚¹
+    int len;//è¾¹çš„æƒå€¼
 } edge[MAXN];
-int head[MAXN];//ÒÔiÎªÆğµãµÄµÚÒ»Ìõ±ß´æ´¢µÄÎ»ÖÃ£¨Êµ¼ÊÊÇ×îºóÊäÈëµÄÄÇ¸ö±àºÅ£©
+int head[MAXN];//ä»¥iä¸ºèµ·ç‚¹çš„ç¬¬ä¸€æ¡è¾¹å­˜å‚¨çš„ä½ç½®ï¼ˆå®é™…æ˜¯æœ€åè¾“å…¥çš„é‚£ä¸ªç¼–å·ï¼‰
 int index = 0;
 
 
-bool vis[MAXN];//ÓÃÀ´±ê¼ÇµãÊÇ·ñÔÚ¶ÓÁĞÖĞ
-int cnt[MAXN];//Ã¿¸öµãµÄÈë¶ÓÁĞ´ÎÊı
-int length[MAXN];//¼ÇÂ¼´ÓÆğµãµ½µãnµÄÂ·¾¶³¤
+bool vis[MAXN];//ç”¨æ¥æ ‡è®°ç‚¹æ˜¯å¦åœ¨é˜Ÿåˆ—ä¸­
+int cnt[MAXN];//æ¯ä¸ªç‚¹çš„å…¥é˜Ÿåˆ—æ¬¡æ•°
+int length[MAXN];//è®°å½•ä»èµ·ç‚¹åˆ°ç‚¹nçš„è·¯å¾„é•¿
 
 
 
-void add(int start,int end,int len)//Á´Ê½Ç°ÏòĞÇµÄ¼Ó±ßº¯Êı
+void add(int start,int end,int len)//é“¾å¼å‰å‘æ˜Ÿçš„åŠ è¾¹å‡½æ•°
 {
     edge[index].len = len;
     edge[index].to = end;
@@ -29,8 +29,8 @@ void add(int start,int end,int len)//Á´Ê½Ç°ÏòĞÇµÄ¼Ó±ßº¯Êı
     head[start] = index++;
 }
 
-//×î¶ÌÂ·SPFAËã·¨
-bool SPFA(int start,int n)//startÊÇÆğÊ¼½Úµã£¬nÊÇ½Úµã×ÜÊı
+//æœ€çŸ­è·¯SPFAç®—æ³•
+bool SPFA(int start,int n)//startæ˜¯èµ·å§‹èŠ‚ç‚¹ï¼Œnæ˜¯èŠ‚ç‚¹æ€»æ•°
 {
     int i,j;
     memset(vis,false,sizeof(vis));
@@ -40,27 +40,27 @@ bool SPFA(int start,int n)//startÊÇÆğÊ¼½Úµã£¬nÊÇ½Úµã×ÜÊı
         length[i] = INT_MAX;
     }
     queue<int>que;
-    que.push(start);//Èë¶Ó
-    vis[start] = true;//±ê¼Ç´ËµãÈë¶ÓÁĞ
-    length[start] = 0;//Ô´µãµ½Ô´µãµÄ³¤¶ÈÎª0
-    cnt[start]++;//Èë¶Ó´ÎÊı¼Ó1
+    que.push(start);//å…¥é˜Ÿ
+    vis[start] = true;//æ ‡è®°æ­¤ç‚¹å…¥é˜Ÿåˆ—
+    length[start] = 0;//æºç‚¹åˆ°æºç‚¹çš„é•¿åº¦ä¸º0
+    cnt[start]++;//å…¥é˜Ÿæ¬¡æ•°åŠ 1
     while(!que.empty())
     {
         int u = que.front();
-        que.pop();//³ö¶Ó
-        vis[u] = false;//±ê¼Ç´ËµãÒÑ¾­²»ÔÚ¶ÓÁĞÖĞ
-        for(j = head[u]; j >= 0; j = edge[j].next)//±éÀúÓëuÁªÍ¨µÄµã
+        que.pop();//å‡ºé˜Ÿ
+        vis[u] = false;//æ ‡è®°æ­¤ç‚¹å·²ç»ä¸åœ¨é˜Ÿåˆ—ä¸­
+        for(j = head[u]; j >= 0; j = edge[j].next)//éå†ä¸uè”é€šçš„ç‚¹
         {
             int v = edge[j].to;
             if(length[v] > length[u] + edge[j].len)
             {
-                length[v] = length[u] + edge[j].len;//Â·¾¶¸üĞÂ
-                if(vis[v] == 0)//Èç¹ûvµã²»ÔÚ¶ÓÁĞÖĞ
+                length[v] = length[u] + edge[j].len;//è·¯å¾„æ›´æ–°
+                if(vis[v] == 0)//å¦‚æœvç‚¹ä¸åœ¨é˜Ÿåˆ—ä¸­
                 {
-                    que.push(v);//Èë¶Ó
-                    vis[v] = 1;//±ê¼Ç
-                    cnt[v]++;//Èë¶Ó´ÎÊı¼Ó1
-                    if(cnt[v] > n)//Èç¹ûÕâ¸öµã¼ÓÈë³¬¹ın´Î£¬ËµÃ÷´æÔÚ¸º»·»ØÂ·£¬Ö±½Ó·µ»Ø
+                    que.push(v);//å…¥é˜Ÿ
+                    vis[v] = 1;//æ ‡è®°
+                    cnt[v]++;//å…¥é˜Ÿæ¬¡æ•°åŠ 1
+                    if(cnt[v] > n)//å¦‚æœè¿™ä¸ªç‚¹åŠ å…¥è¶…è¿‡næ¬¡ï¼Œè¯´æ˜å­˜åœ¨è´Ÿç¯å›è·¯ï¼Œç›´æ¥è¿”å›
                         return false;
                 }
             }
@@ -72,11 +72,12 @@ bool SPFA(int start,int n)//startÊÇÆğÊ¼½Úµã£¬nÊÇ½Úµã×ÜÊı
 int main()
 {
     int a,b,c;
-    while(cin>>a>>b>>c)//´ÓÌâÖĞ¶ÁÈë±ßµÄ¹ØÏµ
+    memset(head,-1,sizeof(head));
+    while(cin>>a>>b>>c)//ä»é¢˜ä¸­è¯»å…¥è¾¹çš„å…³ç³»
     {
-        add(a,b,c);//¹¹½¨Á´Ê½Ç°ÏòĞÇ
+        add(a,b,c);//æ„å»ºé“¾å¼å‰å‘æ˜Ÿ
     }
-    SPFA(start,n);//ÆğÊ¼½Úµã£¬½Úµã×ÜÊı
-    //cout<<length[m];Êä³öÏëÒªµÄ×î¶Ì¾àÀë
+    SPFA(start,n);//èµ·å§‹èŠ‚ç‚¹ï¼ŒèŠ‚ç‚¹æ€»æ•°
+    //cout<<length[m];è¾“å‡ºæƒ³è¦çš„æœ€çŸ­è·ç¦»
     return 0;
 }
