@@ -62,7 +62,7 @@ bool SPFA(int start,int n)//start是起始节点，n是节点总数
                     que.push(v);//入队
                     vis[v] = 1;//标记
                     num[v]++;//入队次数加1
-                    if(num[v] > n)//如果这个点加入超过n次，说明存在负环回路，直接返回
+                    if(num[v] > n)//如果这个点加入超过n次，说明存在负权回路，直接返回
                         return false;
                 }
             }
