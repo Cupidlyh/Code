@@ -16,7 +16,7 @@ int index = 0;
 
 
 bool vis[MAXN];//用来标记点是否在队列中
-int cnt[MAXN];//每个点的入队列次数
+int num[MAXN];//每个点的入队列次数
 int length[MAXN];//记录从起点到点n的路径长
 
 
@@ -34,16 +34,18 @@ bool SPFA(int start,int n)//start是起始节点，n是节点总数
 {
     int i,j;
     memset(vis,false,sizeof(vis));
-    memset(cnt,0,sizeof(cnt));
+    memset(num,0,sizeof(num));
     for(i = 0; i <MAXN; i++)
     {
         length[i] = INT_MAX;
     }
     queue<int>que;
+    while(!que.empty())
+        que.pop();
     que.push(start);//入队
     vis[start] = true;//标记此点入队列
     length[start] = 0;//源点到源点的长度为0
-    cnt[start]++;//入队次数加1
+    num[start]++;//入队次数加1
     while(!que.empty())
     {
         int u = que.front();
@@ -59,8 +61,8 @@ bool SPFA(int start,int n)//start是起始节点，n是节点总数
                 {
                     que.push(v);//入队
                     vis[v] = 1;//标记
-                    cnt[v]++;//入队次数加1
-                    if(cnt[v] > n)//如果这个点加入超过n次，说明存在负环回路，直接返回
+                    num[v]++;//入队次数加1
+                    if(num[v] > n)//如果这个点加入超过n次，说明存在负环回路，直接返回
                         return false;
                 }
             }
