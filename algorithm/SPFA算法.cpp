@@ -35,7 +35,7 @@ bool SPFA(int start,int n)//start是起始节点，n是节点总数
     int i,j;
     memset(vis,false,sizeof(vis));
     memset(num,0,sizeof(num));
-    for(i = 0; i <MAXN; i++)
+    for(i = 0; i < MAXN; i++)
     {
         length[i] = INT_MAX;
     }
