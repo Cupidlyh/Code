@@ -12,7 +12,7 @@ struct Edge//边结构体
     int len;//边的权值
 } edge[MAXN];
 int head[MAXN];//以i为起点的第一条边存储的位置（实际是最后输入的那个编号）
-int index = 0;
+int index;//若有多组例子，要在主函数里对它进行重新置为零的初始化
 
 
 bool vis[MAXN];//用来标记点是否在队列中
@@ -75,6 +75,7 @@ int main()
 {
     int a,b,c;
     memset(head,-1,sizeof(head));
+    index = 0;
     while(cin>>a>>b>>c)//从题中读入边的关系
     {
         add(a,b,c);//构建链式前向星
