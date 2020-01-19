@@ -3,16 +3,16 @@ using namespace std;
 
 #define M 1005
 
-int father[M];//¼ÇÂ¼¸¸½Úµã
+int father[M];//è®°å½•çˆ¶èŠ‚ç‚¹
 
-int Find(int x)//²éÑ¯xµÄ¸ù½Úµã²¢Â·¾¶Ñ¹Ëõ
+int Find(int x)//æŸ¥è¯¢xçš„æ ¹èŠ‚ç‚¹å¹¶è·¯å¾„å‹ç¼©
 {
     if(father[x] != x)
         father[x] = Find(father[x]);
     return father[x];
 }
 
-void Union(int x,int y)//ºÏ²¢xºÍyµÄ¼¯ºÏ
+void Union(int x,int y)//åˆå¹¶xå’Œyçš„é›†åˆ
 {
     int rx,ry;
     rx=Find(x);
@@ -21,10 +21,15 @@ void Union(int x,int y)//ºÏ²¢xºÍyµÄ¼¯ºÏ
         father[rx]=ry;
 }
 
+bool Query(int a,int b)//æŸ¥è¯¢aå’Œbæ˜¯å¦åœ¨åŒä¸€é›†åˆ
+{
+    return Find(a) == Find(b);
+}
+
 int main()
 {
     int i;
-    for(i = 0; i < M; i++)//³õÊ¼»¯
+    for(i = 0; i < M; i++)//åˆå§‹åŒ–
         father[i] = i;
 
     return 0;
