@@ -23,7 +23,7 @@ void Union(int x,int y)//合并x和y的集合
 
 bool Query(int a,int b)//查询a和b是否在同一集合
 {
-    return Find(a) == Find(b);//根节点相同即为在同一集合
+    return Find(a) == Find(b);//二者根节点相同即为在同一集合
 }
 
 int main()
