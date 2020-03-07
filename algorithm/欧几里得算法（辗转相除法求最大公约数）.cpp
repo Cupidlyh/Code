@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int gcd(int n,int m)//辗转相除法求最大公约数
+int gcd(int n,int m)//杈楄浆鐩搁櫎娉曟眰鏈�澶у叕绾︽暟
 {
     int temp;
     while(m > 0)
@@ -14,6 +14,14 @@ int gcd(int n,int m)//辗转相除法求最大公约数
     return n;
 }
 
+/*
+int gcd(int n,int m)//姹傛渶澶у叕绾︽暟閫掑綊鍐欐硶
+{
+    if(m == 0)
+        return n;
+    return gcd(m,n % m);
+}
+*/
 
 int main()
 {
