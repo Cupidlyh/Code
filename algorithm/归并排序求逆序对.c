@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ans;//¼ÇÂ¼Êı×éÖĞÄæĞò¶ÔµÄ¸öÊı
+int ans;//è®°å½•æ•°ç»„ä¸­é€†åºå¯¹çš„ä¸ªæ•°
 
-//¹é²¢ÅÅĞò
+//å½’å¹¶æ’åº
 void MergeSort(int *R,int *T,int low,int high)
 {
-    //R[low..high]¹é²¢ÅÅĞòºó·ÅÈëT[low..high]
+    //R[low..high]å½’å¹¶æ’åºåæ”¾å…¥T[low..high]
     if(low == high)
         T[low] = R[low];
     else
     {
-        int mid = (low + high) / 2;//½«µ±Ç°Êı×éÒ»·ÖÎª¶ş£¬Çó³ö·ÖÁÑµãmid
-        MergeSort(R,T,low,mid);//¶Ô×ÓÊı×éR[low..mid]µİ¹é¹é²¢ÅÅĞò£¬½á¹û·ÅÈëT[low..mid]
-        MergeSort(R,T,mid + 1,high);//¶Ô×ÓÊı×éR[mid+1..high]µİ¹é¹é²¢ÅÅĞò£¬½á¹û·ÅÈëT[mid+1..high]
+        int mid = (low + high) / 2;//å°†å½“å‰æ•°ç»„ä¸€åˆ†ä¸ºäºŒï¼Œæ±‚å‡ºåˆ†è£‚ç‚¹mid
+        MergeSort(R,T,low,mid);//å¯¹å­æ•°ç»„R[low..mid]é€’å½’å½’å¹¶æ’åºï¼Œç»“æœæ”¾å…¥T[low..mid]
+        MergeSort(R,T,mid + 1,high);//å¯¹å­æ•°ç»„R[mid+1..high]é€’å½’å½’å¹¶æ’åºï¼Œç»“æœæ”¾å…¥T[mid+1..high]
 
-        //½«ÓĞĞòÊı×éR[low..mid]ºÍR[mid+1..high]¹é²¢ÎªÓĞĞòÊı×éT[low..high]
+        //å°†æœ‰åºæ•°ç»„R[low..mid]å’ŒR[mid+1..high]å½’å¹¶ä¸ºæœ‰åºæ•°ç»„T[low..high]
         int i = low,j = mid + 1,k = low;
-        while(i <= mid && j <= high)//½«RÖĞµÄ¼ÇÂ¼ÓÉĞ¡µ½´óµØ²¢ÈëTÖĞ
+        while(i <= mid && j <= high)//å°†Rä¸­çš„è®°å½•ç”±å°åˆ°å¤§åœ°å¹¶å…¥Tä¸­
         {
             if(R[i] <= R[j])
                 T[k++] = R[i++];
@@ -27,11 +27,11 @@ void MergeSort(int *R,int *T,int low,int high)
                 ans += (mid - i + 1);
             }
         }
-        while(i <= mid)//½«Ê£ÓàµÄR[i..mid]¸´ÖÆµ½TÖĞ
+        while(i <= mid)//å°†å‰©ä½™çš„R[i..mid]å¤åˆ¶åˆ°Tä¸­
             T[k++] = R[i++];
-        while(j <= high)//½«Ê£ÓàµÄR[j..high]¸´ÖÆµ½TÖĞ
+        while(j <= high)//å°†å‰©ä½™çš„R[j..high]å¤åˆ¶åˆ°Tä¸­
             T[k++] = R[j++];
-        //½«ÓĞĞòÊı×éT[low,k-1]¸³Öµ¸øR[low,k-1]
+        //å°†æœ‰åºæ•°ç»„T[low,k-1]èµ‹å€¼ç»™R[low,k-1]
         for(j = low; j < k; j++)
             R[j] = T[j];
     }
@@ -39,7 +39,7 @@ void MergeSort(int *R,int *T,int low,int high)
 
 int main()
 {
-    ans = 0;
+    ans = 0;//æ±‚é€†åºå¯¹çš„æ—¶å€™è¦æ³¨æ„æ‰€æ±‚æ•°ç»„å¤§å°è¦å¤§äº0
     int num[7] = {49,38,65,97,76,13,27};
     int *T = (int *)malloc(sizeof(int) * 7);
     MergeSort(num,T,0,7 - 1);
