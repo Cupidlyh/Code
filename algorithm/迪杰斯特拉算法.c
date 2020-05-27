@@ -57,7 +57,7 @@ int main()
         for(int j = 0; j < N; j++)
             Graph[i][j] = INT_MAX;
     //scanf("%d",&Graph[m][n]); 从题中读入有向图
-    dijkstra(Graph,1,N);//N为有向图顶点数，1为源点（由题意来输入源点）
+    dijkstra(Graph,1,n);//n为有向图顶点数，1为源点（由题意来输入源点）
     //printf();输出你想要的最短路径
     return 0;
 }
