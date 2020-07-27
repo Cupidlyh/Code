@@ -2,7 +2,7 @@ class Solution {
 public:
     #define MAXN 40005
     #define N 10005
-    struct qnode//根据c值的大小，c值小的先出队列
+    struct qnode//根据c值的大小，c值大的先出队列
     {
         int v;
         double c;
