@@ -35,11 +35,11 @@ int main()
         }
 
         int res = 0;
-        int coor[4][2] = {0,1,0,-1,-1,0,1,0};//上下左右
+        int coor[4][2] = {0,1,0,-1,-1,0,1,0};//脡脧脧脗脳贸脫脪
         queue<pair<int,int> > q;
         q.push({sx,sy});
         book[sx][sy] = 1;
-        //广度优先搜索
+        //骞垮害浼樺厛鎼滅储
         while (!q.empty())
         {
             int xx = q.front().first;
